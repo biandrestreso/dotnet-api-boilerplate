@@ -1,0 +1,70 @@
+<div class="flex h-screen">
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <header class="flex justify-between items-center bg-blue-300 p-4">
+      <div class="flex">Aspire</div>
+      <div class="flex">Scheduler POC</div>
+    </header>
+    <div class="flex h-full">
+      <nav class="flex w-96 h-full bg-slate-300">
+        <div class="w-full flex mx-auto px-3 py-4">
+          <div
+            class="w-full h-full flex-1 justify-center text-gray-900 text-xl"
+          >
+            <h2 class="pb-3">All Events ({{ currentEvents.length }})</h2>
+            <ul class="text-sm">
+              <div *ngIf="currentEvents.length === 0">
+                <li>No events</li>
+              </div>
+
+              <li *ngFor="let event of currentEvents">
+                <div class="grid grid-cols-3 gap-2 py-2">
+                  <div class="col-span-2">
+                    <p class="font-bold">
+                      {{ event.start | date : "dd/MM/yyyy" }}
+                    </p>
+                    <b>{{ event.start | date : "shortTime" }} - </b>
+                    <b>{{ event.end | date : "shortTime" }} </b>
+                  </div>
+
+                  <div
+                    class="flex justify-center items-center font-semibold font-sans text-center"
+                  >
+                    <span>{{ event.title }}</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main
+        class="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14"
+      >
+        <div class="flex w-full mx-auto px-6 py-8">
+          <div class="flex-1 flex-col w-full h-full text-gray-900">
+            <div class="flex-1 w-full items-center justify-center mx-auto">
+              <full-calendar [options]="calendarOptions">
+                <!-- <ng-template #eventContent let-arg>
+                  <b>{{ arg.event.title }} </b>
+                  <p >
+                    {{ arg.event.startStr | date : "shortTime" }} -
+                    {{ arg.event.endStr | date : "shortTime" }}
+                  </p>
+                </ng-template> -->
+              </full-calendar>
+            </div>
+          </div>
+        </div>
+      </main>
+      <nav class="flex w-96 h-full bg-slate-300">
+        <div class="w-full flex mx-auto px-6 py-8">
+          <div
+            class="w-full h-full flex items-center justify-center text-gray-900 text-xl"
+          >
+            Rightbar
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
